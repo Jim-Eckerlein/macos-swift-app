@@ -28,7 +28,6 @@ let app = NSApplication.shared
 let appDelegate = AppDelegate()
 app.delegate = appDelegate
 app.setActivationPolicy(.regular)
-app.finishLaunching()
 
 let window = NSWindow(contentRect: NSMakeRect(0, 0, 1024, 768),
                       styleMask: [.closable, .titled, .resizable, .miniaturizable],
@@ -40,7 +39,10 @@ window.delegate = windowDelegate
 window.title = "Hey, Window under control!"
 window.acceptsMouseMovedEvents = true
 window.center()
+window.makeKeyAndOrderFront(nil)
 window.orderFrontRegardless()
+
+app.activate(ignoringOtherApps: true)
 
 while(running) {
     var ev: NSEvent?
